@@ -23,7 +23,9 @@ export default function Main ({
         setCards(dataCard)
       }
     )
+    .catch((error => console.error(`Ошибка редактирования ${error}`)))
   }, [])
+  
 
   return (
     <main className='main'>

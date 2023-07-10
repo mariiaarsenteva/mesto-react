@@ -16,7 +16,7 @@ export default function PopupWithForm ({
           aria-label='Закрыть'
           onClick={onClose}
         />
-        <form noValidate='' className='popup__form' name={name}>
+        <form className='popup__form' name={name}>
           <h2 className='popup__title'>{title}</h2>
           {children}
           <button

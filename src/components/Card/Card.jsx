@@ -20,7 +20,7 @@ export default function Card ({ card, onCardClick }) {
             type='button'
             aria-label='Нравится'
           ></button>
-          <p className='elements__like-counter'>0</p>
+          <p className='elements__like-counter'></p>
         </div>
       </div>
     </div>
