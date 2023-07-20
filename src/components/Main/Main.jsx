@@ -11,11 +11,15 @@ export default function Main({
   onDelete,
   cards,
   isLoading,
+  handleRegister,
+  handleLogin
 }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="main">
+      {name === "main" ? 
+      <>
       <section className="profile">
         <div className="profile__container">
           <button
@@ -69,6 +73,14 @@ export default function Main({
           )}
         </ul>
       </section>
+      </>
+        :
+        name === 'signup'?
+
+        <Register name={name} handleRegister={handleRegister}/>
+        :
+
+        <Login name={name} handleLogin={handleLogin}/>
+          }
     </main>
-  );
-}
+  )}

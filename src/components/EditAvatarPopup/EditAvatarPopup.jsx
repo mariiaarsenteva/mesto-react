@@ -8,8 +8,8 @@ export default function EditAvatarPopup({isOpen, onClose, onUpdateAvatar, isSend
     const {values, errors, isValid, isInputValid, reset, handleChange } = useFormValidation()
 
     function resetClose(){
-       onClose()
-        reset()
+      onClose()
+      reset()
     }
 
     function handleSubmit(evt){

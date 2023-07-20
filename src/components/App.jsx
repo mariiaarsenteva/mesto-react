@@ -9,6 +9,7 @@ import api from "../utils/api.js";
 import EditProfilePopup from "./EditProfilePopup/EditProfilePopup.jsx";
 import EditAvatarPopup from "./EditAvatarPopup/EditAvatarPopup.jsx";
 import AddPlacePopup from "./AddPlacePopup/AddPlacePopup.jsx";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 
 function App() {
   //стейты попапов
@@ -102,7 +103,6 @@ function App() {
       return card._id !== deleteCard
     }))
     closePopup()
-    setIsSending(false)
   })
   .catch((error) => console.error(`Ошибка редактирования ${error}`))
   .finally(()=> setIsSending(false))
@@ -152,6 +152,43 @@ function handleAddCard(dataCard, reset){
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
+
+        <SendContext.Provider value={isSending}>
+          <Routes>
+            <Route path='/'
+            element={<ProtectedRoute
+              element={ProtectedPage}
+              userEmail={userEmail}
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              onCardClick={handleCardClick}
+              onDelete={handleDeletePopupClick}
+              cards={cards}
+              isLoading={isLoadingCards}
+          // onCardLike={handleLike}
+          // loggedIn={loggedIn}
+              />
+              }
+              />
+            <Route path='/sign-up' element={
+              <>
+                <Header name='signup' />
+                <Main name='signup' handleRegister={handleRegister} />
+              </>
+            }
+            />
+            <Route path='/sign-in' element={
+                <>
+                  <Header name='signin' />
+                  <Main name='signin' handleLogin={handleLogin} />
+                </>
+              }
+            />
+            <Route path='*' element={<Navigate to='/' replace />} />
+          </Routes>
+        </SendContext.Provider>
+
         <Header />
 
         <Main
@@ -166,7 +203,8 @@ function handleAddCard(dataCard, reset){
 
         <Footer />
 
-        <EditProfilePopup
+        <SendContext.Provider value={isSending}>
+          <EditProfilePopup
           onUpdateUser={handleUpdateUser}
           isOpen={isEditProfilePopupOpen}
           onClose={closePopup}
@@ -186,6 +224,14 @@ function handleAddCard(dataCard, reset){
          onClose={closePopup}
          isSend ={isSending}
         />
+
+
+        {/* <DeletePopup
+        onClose={closePopup}
+        isOpen={isDeletePopupOpen}
+        onSubmit={handleSubmitDeletion}
+        /> */}
+         </SendContext.Provider>
 
         <PopupWithForm
           name="delete-popup"
