@@ -1,3 +1,7 @@
+// import Form from "../Form/Form";
+// import Popup from "../Popup/Popup";
+import React from "react";
+
 export default function PopupWithForm ({
   name,
   title,
@@ -10,6 +14,14 @@ export default function PopupWithForm ({
   isValid=true
 }) {
   return (
+
+    // <Popup name={name} isOpen={isOpen} onClose={onClose}>
+    //   <Form 
+    //   name={name} onSubmit={onSubmit} titleButton={titleButton} isSend={isSend} isVlid={isValid} children={children}>
+    //   <h2 className={`popup__title ${name === 'delete-popup' ? 'popup__title_delete': ''}`}>{title}</h2>
+    //   </Form>
+    //   </Popup>
+
     <div className={`popup popup_type_${name} ${isOpen ? 'popup_opened' : ''}`} onClick={onClose}>
       <div className='popup__container' onClick={(evt => evt.stopPropagation())}>
         <button
@@ -34,5 +46,6 @@ export default function PopupWithForm ({
         </form>
       </div>
     </div>
+    
   )
 }

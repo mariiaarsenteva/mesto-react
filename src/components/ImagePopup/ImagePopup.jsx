@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function ImagePopup ({ card, isOpen, onClose }) {
   return (
     <div className={`popup image-popup ${isOpen ? 'popup_opened' : ''}`} onClick={onClose}>

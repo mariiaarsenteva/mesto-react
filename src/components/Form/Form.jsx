@@ -1,26 +1,27 @@
 import { useContext } from "react";
+import SendContext from '../../contexts/SendContext.js'
+import React from "react";
 
 
-export default function Form ({name, children,titleButton, isValid, onSubmit}){
+export default function Form({ name, children, titleButton, isValid, onSubmit }) {
 
-    const isSend = useContext(SendContext)
+  const isSend = useContext(SendContext)
 
-    return(
-        <form className='popup__form' name={name} onSubmit={onSubmit}>
-            {children}
-        
-        {children}
-        <button
-          className={`${name ==='signin' || name === 'signup' ? 'login__submit-button' : ' popup__submit-button'} 
-            ${isSend ? (name ==='signin' || name === 'signup' ? 'login__submit-button_loading' : 'popup__submit-button_loading') : ''}
-            ${isValid ? '' : (name ==='signin' || name === 'signup' ? 'login__submit-button_disabled' : 'popup__submit-button_disabled')}`}
-          
-        
-          disabled={isSend}
+  return (
+    <form name={name} onSubmit={onSubmit}>
+      {children}
 
-        >
+      {name === 'signin' || name === 'signup' ?
+        <button className={`login__submit-button ${isSend ? 'login__submitbutton_loading' : ''} ${isValid ? '' : ''}`}>
           {isSend ? '' : titleButton || 'Сохранить'}
         </button>
-      </form>
-    )
+        :
+        <button className={`popup__submit-button ${isSend ? 'popup__submit-button_loading' : ''} ${isValid ? '' : 'popup__submit-button_disabled'}`}>
+          {isSend ? '' : titleButton || 'Сохранить'}
+        </button>
+      }
+
+
+    </form>
+  )
 }

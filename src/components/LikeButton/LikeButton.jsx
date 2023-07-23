@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import api from "../../utils/api"
+import React from "react";
 
 export default function LikeButton({likes, cardid, myid} ){
  const [isLike, setIsLike] = useState(false)
@@ -13,14 +14,14 @@ export default function LikeButton({likes, cardid, myid} ){
 
     
     if (isLike){
-        api.removeLikes(cardid)
+        api.removeLike(cardid)
         .then(res=>{
             setIsLike(false)
             setCount(res.likes.length)
         })
         .catch((error => console.error(`Ошибка редактирования ${error}`)))
     } else {
-        api.addLikes(cardid)
+        api.addLike(cardid)
         .then(res => {
             setIsLike(true)
             setCount(res.likes.length)

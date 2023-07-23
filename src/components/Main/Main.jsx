@@ -1,9 +1,12 @@
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import Card from "../Card/Card.jsx";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import Loader from "../Loader/Loader.jsx";
+import Register from '../Register/Register.jsx'
+import Login from '../Login/Login.jsx'
+import React from "react";
 
-export default function Main({
+ const Main = memo(({
   onEditProfile,
   onAddPlace,
   onEditAvatar,
@@ -12,13 +15,16 @@ export default function Main({
   cards,
   isLoading,
   handleRegister,
-  handleLogin
-}) {
+  handleLogin,
+  name,
+  onCardLike
+}) => {
+  
   const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="main">
-      {name === "main" ? 
+      {name === "main" ?   
       <>
       <section className="profile">
         <div className="profile__container">
@@ -66,6 +72,7 @@ export default function Main({
                     card={data}
                     onCardClick={onCardClick}
                     onDelete={onDelete}
+                    onCardLike={onCardLike}
                   />
                 </li>
               );
@@ -83,4 +90,6 @@ export default function Main({
         <Login name={name} handleLogin={handleLogin}/>
           }
     </main>
-  )}
+  )})
+
+  export default Main;

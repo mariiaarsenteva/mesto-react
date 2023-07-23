@@ -1,5 +1,6 @@
 import useFormValidation from "../../utils/useFormValidation/useFormValidation";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import React from "react";
 
 
 export default function AddPlacePopup({isOpen, onClose, onAddPlace, isSend}){

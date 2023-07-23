@@ -46,7 +46,7 @@ class Api {
     }).then(this._checkResponse)
   }
 
-  addCards (data) {
+  addCard (data) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -57,7 +57,7 @@ class Api {
     }).then(this._checkResponse)
   }
 
-  addLikes (cardId) {
+  addLike (cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: {
@@ -66,7 +66,7 @@ class Api {
     }).then(this._checkResponse)
   }
 
-  removeLikes (cardId) {
+  removeLike (cardId) {
     return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: {

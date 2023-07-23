@@ -1,6 +1,7 @@
 import CurrentUserContext from "../../contexts/CurrentUserContext.js"
 import { useContext } from "react"
 import LikeButton from "../LikeButton/LikeButton.jsx";
+import React from "react";
 
 
 export default function Card({ card, onCardClick, onDelete }) {
